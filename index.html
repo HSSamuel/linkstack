@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LinkStack | Builder</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="editor-section">
+        <div class="header">
+          <h1>LinkStack</h1>
+          <p>Build your profile</p>
+        </div>
+
+        <div class="form-group">
+          <label>Profile Picture</label>
+          <input type="file" id="imageInput" accept="image/*" />
+        </div>
+
+        <div class="form-group">
+          <label>Profile Name</label>
+          <input type="text" id="nameInput" placeholder="ex. John Doe" />
+        </div>
+
+        <div class="form-group">
+          <label>Bio / Tagline</label>
+          <input
+            type="text"
+            id="bioInput"
+            placeholder="ex. Software Developer"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Choose Theme</label>
+          <div class="theme-buttons">
+            <button
+              onclick="changeTheme('https://c0.wallpaperflare.com/preview/365/1021/239/private-phone-call-man.jpg', 'white')"
+              style="background: linear-gradient(45deg, #a78bfa, #3b82f6)"
+            ></button>
+
+            <button
+              onclick="changeTheme('https://www.androidauthority.com/wp-content/uploads/2023/06/google-pixel-fold-on-a-phone-call.jpg', 'black')"
+              style="background: linear-gradient(45deg, #fce7f3, #e5e7eb)"
+            ></button>
+
+            <button
+              onclick="changeTheme('https://cdn.create.vista.com/api/media/small/204681916/stock-photo-cropped-shot-man-making-phone-dial', 'white')"
+              style="background: #1f2937"
+            ></button>
+          </div>
+        </div>
+
+        <hr />
+
+        <h3>Your Links</h3>
+        <div id="linksContainer"></div>
+
+        <button class="add-btn" id="addLinkBtn">+ Add New Link</button>
+
+        <hr />
+        <div class="export-section">
+          <h3>Finish & Share</h3>
+          <p style="font-size: 14px; color: #666; margin-bottom: 20px">
+            To generate a QR code, enter the web address where your profile is
+            hosted.
+          </p>
+
+          <div class="form-group">
+            <label for="hostedUrlInput">Your Hosted Profile URL</label>
+            <input
+              type="url"
+              id="hostedUrlInput"
+              placeholder="e.g., https://my-name.vercel.app"
+            />
+          </div>
+
+          <div id="shareContainer" style="display: none">
+            <div class="qr-section" style="text-align: center; margin: 25px 0">
+              <p style="font-weight: 600; margin-bottom: 10px">
+                Your Presentation QR Code
+              </p>
+
+              <div
+                id="qrcode"
+                style="
+                  display: inline-block;
+                  padding: 15px;
+                  background: white;
+                  border-radius: 12px;
+                  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+                "
+              ></div>
+
+              <div style="margin-top: 15px">
+                <button
+                  onclick="downloadQrImage()"
+                  style="
+                    padding: 8px 16px;
+                    background: #4b5563;
+                    color: white;
+                    border: none;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    font-size: 12px;
+                  "
+                >
+                  Download QR Image (for PowerPoint)
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <hr />
+
+          <button onclick="downloadProfile()" class="export-btn">
+            <span>⬇</span> Download profile.html
+          </button>
+        </div>
+      </div>
+
+      <div class="preview-section">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen" id="phoneScreen">
+            <div class="profile-header">
+              <div class="avatar-circle"></div>
+              <h2 id="previewName">Your Name</h2>
+              <p id="previewBio">Your bio goes here...</p>
+            </div>
+
+            <div class="links-list" id="previewLinks">
+              <a href="#" class="link-card">GitHub</a>
+              <a href="#" class="link-card">LinkedIn</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <script src="script.js"></script>
+  </body>
+</html>

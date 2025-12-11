@@ -1,0 +1,330 @@
+:root {
+    --primary: #6366f1; /* Indigo color */
+    --bg-color: #f3f4f6;
+    --text-dark: #1f2937;
+    --phone-border: #111827;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* style.css */
+
+body {
+    font-family: 'Inter', sans-serif;
+    
+    /* NEW: Beautiful Mesh Background */
+    background-color: #eef2ff; /* Light Indigo Base */
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.15) 0px, transparent 50%);
+        
+    /* Keeps the background still while you scroll */
+    background-attachment: fixed; 
+    background-size: cover;
+    
+    /* Layout properties */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- LAYOUT: Split Screen --- */
+
+.main-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 90%;
+    max-width: 1100px;
+    
+    /* Fixed height for desktop */
+    height: 90vh; 
+    
+    /* NEW: Glassmorphism Effect */
+    background: rgba(255, 255, 255, 0.95); /* 95% Opaque White */
+    backdrop-filter: blur(20px); /* Blurs the colors behind it */
+    
+    border-radius: 24px; /* Slightly rounder */
+    
+    /* New Shadow: Soft glowing dark shadow */
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle white border */
+    
+    overflow: hidden;
+}
+
+/* --- LEFT SIDE: Editor --- */
+.editor-section {
+    /* NEW: Subtle gradient background */
+    background: linear-gradient(to bottom, #ffffff 0%, #f5f3ff 100%);
+    
+    padding: 40px;
+    border-right: 1px solid rgba(0,0,0,0.05); /* Softer border */
+    
+    /* Ensure scrolling works */
+    height: 100%; 
+    overflow-y: auto; 
+    padding-bottom: 80px; 
+}
+
+/* --- BRAND HEADER CARD --- */
+.editor-section .header {
+    /* The Magic Gradient: Indigo to Purple */
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    
+    /* Spacing and Shape */
+    padding: 30px;
+    border-radius: 16px;
+    margin-bottom: 30px;
+    
+    /* Text Colors */
+    color: white;
+    text-align: center;
+    
+    /* The "Glow" Effect */
+    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Force the H1 inside the header to be white */
+.editor-section .header h1 {
+    color: white;
+    margin-bottom: 5px;
+    font-size: 28px;
+    letter-spacing: -0.5px;
+}
+
+/* Force the paragraph to be slightly transparent white */
+.editor-section .header p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    margin: 0;
+    font-weight: 500;
+}
+
+h1 { color: var(--text-dark); margin-bottom: 5px; }
+h3 { margin-top: 20px; margin-bottom: 10px; font-size: 16px; color: #6b7280; }
+hr { border: 0; border-top: 1px solid #e5e7eb; margin: 25px 0; }
+
+.form-group { margin-bottom: 20px; }
+label { display: block; font-size: 12px; font-weight: 600; color: #6b7280; margin-bottom: 5px; text-transform: uppercase; }
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: 0.2s;
+}
+input:focus { border-color: var(--primary); outline: none; }
+
+.add-btn {
+    width: 100%;
+    padding: 12px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.add-btn:hover { opacity: 0.9; }
+
+/* --- RIGHT SIDE: Phone Preview --- */
+.preview-section {
+    background-color: #eef2ff; /* Light Indigo Tint */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* The Fake iPhone */
+.phone-frame {
+    height: 550px;
+    width: 300px;   
+    border: 12px solid var(--phone-border);
+    border-radius: 40px;
+    background: white;
+    position: relative;
+    overflow: hidden; 
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    margin: 0 auto;
+}
+
+/* The Notch */
+.phone-notch {
+    width: 120px;
+    height: 20px;
+    background: var(--phone-border);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    z-index: 10;
+}
+
+/* The Screen Content */
+.phone-screen {
+    padding: 40px 20px;
+    text-align: center;
+    height: 100%;
+    overflow-y: auto;   
+    background-color: #f3f4f6; /* Fallback color */
+    background-size: cover;
+    background-position: center;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2); 
+    transition: background 0.3s ease; /* Smooth transition when changing themes */
+}
+
+.avatar-circle {
+    width: 100px;
+    height: 100px;
+    background-color: #ddd; /* Default grey color */
+    border-radius: 50%;
+    margin: 10px auto;
+    background-position: center;
+    background-size: cover; /* Ensures image covers the circle */
+    background-repeat: no-repeat;
+    border: 4px solid white; /* Adds a nice border */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.profile-header h2 { font-size: 20px; margin-bottom: 5px; }
+.profile-header p { font-size: 14px; color: #6b7280; margin-bottom: 25px; }
+
+/* Preview Links */
+.link-card {
+    display: block;
+    background: white;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 600;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: 0.2s;
+    width: 75%;
+    margin: 0 auto 10px auto;
+}
+.link-card:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+
+.theme-buttons { display: flex; gap: 10px; margin-top: 5px; }
+.theme-buttons button {
+    width: 30px; 
+    height: 30px; 
+    border-radius: 50%; 
+    border: 2px solid #ddd; 
+    cursor: pointer;
+}
+.theme-buttons button:hover { transform: scale(1.1); }
+
+
+/* --- MOBILE RESPONSIVENESS (Tablets & Phones) --- */
+@media (max-width: 900px) {
+    
+    /* 1. Reset the Body Layout */
+    body {
+        height: auto; /* Allow the page to scroll naturally */
+        display: block; /* Stop trying to center everything */
+        padding: 20px 10px; /* Add breathing room on edges */
+    }
+
+    /* 2. Stack the Main Container */
+    .main-container {
+        display: flex;
+        flex-direction: column; /* Stack Editor on top of Preview */
+        height: auto; /* Remove the fixed height */
+        width: 100%;
+        overflow: visible; /* Stop hiding content that flows out */
+    }
+
+    /* 3. Adjust the Editor (Top Section) */
+    .editor-section {
+        width: 100%;
+        border-right: none; /* Remove the vertical line */
+        border-bottom: 2px solid #e5e7eb; /* Add a horizontal divider */
+        padding: 20px;
+        /* On mobile, we want the whole page to scroll, not just this div */
+        overflow-y: visible; 
+    }
+
+    /* 4. Adjust the Preview (Bottom Section) */
+    .preview-section {
+        width: 100%;
+        padding: 60px 0; /* Give the phone lots of space */
+        background-color: #f3f4f6; /* Make the bottom distinct */
+    }
+
+    /* 5. Shrink the Phone slightly for small screens */
+    .phone-frame {
+        /* Use transform to shrink it safely if the screen is really narrow */
+        transform: scale(0.9); 
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* Softer shadow on mobile */
+    }
+}
+
+/* --- TEXT VISIBILITY HELPERS --- */
+
+/* Class for White Text (use on dark/busy images) */
+.text-pop-white {
+    color: white !important;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.7), 0 0 10px rgba(0,0,0,0.3); /* Double shadow for extra pop */
+}
+
+/* Class for Dark Text (use on light images) */
+.text-pop-dark {
+    color: #1f2937 !important;
+    text-shadow: 0 1px 2px rgba(255,255,255,0.8); /* White glow behind dark text */
+}
+
+/* Make the Bio a bit more readable by adding a subtle background pill */
+.profile-header p {
+    display: inline-block; /* Only wrap the text, not full width */
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: rgba(0,0,0,0.1); /* Very subtle dark tint */
+    backdrop-filter: blur(2px); /* Blur the image slightly behind text */
+    margin-top: 5px;
+    max-width: 90%;
+}
+
+.export-btn {
+    width: 100%;
+    padding: 12px; 
+    background: #10b981; 
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600; /* Slightly less bold */
+    font-size: 14px; 
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0 4px 6px rgba(16, 185, 129, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.export-btn:hover {
+    background: #059669;
+    transform: translateY(-1px);
+}
+
+.export-section {
+    text-align: center; /* Centers the H3 and Paragraph text */
+    margin-top: 30px;   /* Adds some space above it */
+    padding-top: 20px;
+    border-top: 1px solid #e5e7eb; /* Optional: Adds a subtle divider line */
+}
+
+.export-section h3 {
+    margin-bottom: 5px;
+    color: var(--text-dark);
+}
